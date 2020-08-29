@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>AssFood</title>
+
+	<link rel="stylesheet" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Exo:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+  <header class="header">
+  	<h1 class="title">AssFood</h1>
+  </header>
+  <div class="container-main">
+  <nav class="nav">
+  	<ul class="testtt">
+  		<li class="list-items" id="test1"><a href="#" class="list-links">Test 1</a></li>
+  	    <ul class="subNav">
+  			<li><a href="#" class="list-sublinks">test tested 1</a></li>
+  			<li><a href="#" class="list-sublinks">test tested 3</a></li>
+  			<li><a href="#" class="list-sublinks">test tested 3</a></li>
+  		</ul>
+
+  		<li class="list-items"><a href="#" class="list-links">Test 2</a></li>
+		<ul class="subNav">
+  			<li><a href="#" class="list-sublinks">test tested 1</a></li>
+  			<li><a href="#" class="list-sublinks">test tested 3</a></li>
+  			<li><a href="#" class="list-sublinks">test tested 3</a></li>
+  		</ul>
+
+  		<li class="list-items"><a href="#" class="list-links">Test 3</a></li>
+		<ul class="subNav">
+  			<li><a href="#" class="list-sublinks">test tested 1</a></li>
+  			<li><a href="#" class="list-sublinks">test tested 3</a></li>
+  			<li><a href="#" class="list-sublinks">test tested 3</a></li>
+  		</ul>
+
+  		<li class="list-items"><a href="#" class="list-links">Test 4</a></li>
+  		<ul class="subNav">
+  			<li><a href="#" class="list-sublinks">test tested 1</a></li>
+  			<li><a href="#" class="list-sublinks">test tested 3</a></li>
+  			<li><a href="#" class="list-sublinks">test tested 3</a></li>
+  		</ul>
+			
+  	</ul>
+  </nav>
+  <section class="section">
+  	<div class="section-menu">
+  		<button></button>
+  		<input type="" name="">
+  	</div>
+  	<div class="adding-recipe">
+  		<form>
+  			<div class="add-name-wrapper">
+  				<div class="add-img">
+  					<img src="img/food.svg">
+  					<input type="file" name="img" accept="image/*"height="350px" width="350px">
+  				</div>
+  				<span>Введите название блюда</span>
+  				<input type="text" name="name" class="add-name" maxlength="32">
+  			</div>
+  			<div class="add-ingridients-wrapper">
+  				<div class="add-ingr-small-wrapper">
+	  				<img src="img/clock.png" width="25" height="25" alt="Clock">
+	  				<input type="number" name="time" min="1" max="300" class="add-time" value="1" required>
+	  				<img src="img/food.svg" width="25" height="25" alt="Food">
+	  				<span class="ingridient-count">0</span>
+	  				</div>
+  				<ol>
+  					<input type="text" name="ingridients" id="add-ingridients" maxlength="32" required>
+  				</ol>
+  				<button type="button" class="add-ingridients">Добавить ингридиент</button>
+  			</div>
+  			<input type="submit" name="submit" class="submit">
+  		</form>
+  	</div>
+  	<div class="recipes">
+  		<add-recepie img="img/food_02.jpg" name="Toothbrush" time="12" ingridients="2"></add-recepie>
+
+  	</div>
+  </section>
+  </div>
+  <footer></footer>
+  <script type="text/javascript" src="js/app.js"></script>
+</div>
+</body>
+</html>
