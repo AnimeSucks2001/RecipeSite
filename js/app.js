@@ -2,7 +2,7 @@
 const navMain = document.querySelectorAll(".list-items");
 const subNav = document.querySelectorAll(".subNav");
 const btnAddRec = document.querySelector(".section-menu button");
-const recipes = document.querySelector(".recipes");
+const recipesDiv = document.querySelector(".recipes");
 const addRecipe = document.querySelector(".adding-recipe");
 
 const addIngridient = document.querySelector(".adding-recipe .add-ingridients");
@@ -10,6 +10,15 @@ const addIngrInput = document.querySelector(".adding-recipe #add-ingridients");
 const addIngrUl = document.querySelector(".adding-recipe ol");
 const ingrNumber = document.querySelector(".adding-recipe .ingridient-count");
 const addName = document.querySelector(".adding-recipe .add-name");
+
+let recArr = [];
+const recipes = document.querySelector(".recipes add-recepie");
+let recipesS = recipes;
+while (recipesS && stop !=20){
+  recArr.push(recipesS);
+  recipesS = recipesS.nextElementSibling;
+}
+console.log(recArr)
 
 function changeBlock() {
 let currentElSib = this.nextElementSibling;
@@ -31,20 +40,21 @@ for (i = 0 ; i <= navMain.length - 1; i++) {
     navMain[i].addEventListener("click", changeBlock);
 }
 
+///=== Button for adding recipes ===///
 function showAddRec(){
 
-  if(recipes.style.display === "none") {
-    recipes.style.display = "flex";
+  if(recipesDiv.style.display === "none") {
+    recipesDiv.style.display = "flex";
     addRecipe.style.display = "none";
   } else {
-    recipes.style.display = "none";
+    recipesDiv.style.display = "none";
     addRecipe.style.display = "flex";
   }
 }
 
 btnAddRec.addEventListener("click", showAddRec);
 
-/////////////////////////////////////////////////
+///=== Adding ingridients ===///
 
 function addList(){
   const newLi = document.createElement("li");
@@ -64,16 +74,15 @@ function resetStyle(){
 }
 
 addName.addEventListener("click", resetStyle);
-/////////////////////////////////////////////////
-let recArr = [];
 
+///=== Page for adding recipes ===///
 function createRec(e){
   e.preventDefault();
 
   if (addName.value === ""){
     addName.style.borderColor = "red";
     addName.style.boxShadow = "0 0 5px red";
-    addName.setAttribute("placeholder", "Поле не может быть пустым!");
+    addName.setAttribute("placeholder", "Введите название!");
   } else {
     let rec = {
     img: document.querySelector(".adding-recipe .add-img img").src,
@@ -81,7 +90,7 @@ function createRec(e){
     time: document.querySelector(".adding-recipe .add-time").value,
     ingr: ingrNumber.innerText
   }
-  recArr.push(rec);
+  
   document.querySelector("form").reset();
 
   let tres = document.createElement("add-recepie");
@@ -89,16 +98,16 @@ function createRec(e){
   tres.setAttribute("name", rec.name);
   tres.setAttribute("time", rec.time);
   tres.setAttribute("ingridients", rec.ingr);
-  recipes.appendChild(tres);
-  console.log(recArr)
+  recipesDiv.appendChild(tres);
+  recArr.push(tres);
+  console.log(recArr);
   }
 }
 
 document.querySelector(".adding-recipe .submit").addEventListener("click", createRec);
 
-/////////////////////////////////////////////////
 
-/////////////////////////////////////////////////
+///=== Custon WebComponent(Recipe) ===///
 const template = document.createElement("template");
 template.innerHTML = `
   <style>
@@ -169,6 +178,8 @@ class AddRecipe extends HTMLElement {
     this.shadowRoot.querySelector(".food-name").innerText = this.getAttribute("name");
     this.shadowRoot.querySelector(".food-time span").innerText = this.getAttribute("time");
     this.shadowRoot.querySelector(".food-ingridients span").innerText = this.getAttribute("ingridients");
+
+    this.addEventListener("click", saveAttr);
   }
 
   static get observedAttributes(){
@@ -183,6 +194,16 @@ class AddRecipe extends HTMLElement {
 customElements.define("add-recepie", AddRecipe);
 
 
+function saveAttr(){
+  localStorage.setItem("name", this.getAttribute("name"));
+  localStorage.setItem("img", this.getAttribute("img"));
+  localStorage.setItem("time", this.getAttribute("time"));
+  localStorage.setItem("ingridients", this.getAttribute("ingridients"));
+}
+
+for(i=0; i < recArr.length; i++){
+  recArr[i].addEventListener("click", saveAttr);
+}
 
 /*
 function calcDelay(taking, mult){
